@@ -1,0 +1,29 @@
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <f:section title="Build Timestamp" >
+        <f:optionalBlock field="enableBuildTimestamp" title="Expose BUILD_TIMESTAMP as env variable and System property" checked="${enableBuildTimestamp}">
+            <f:entry title="Timezone" field="timezone">
+                <f:textbox name="timezone" value="${timezone}"/>
+            </f:entry>
+            <f:entry title="Pattern" field="pattern">
+                <f:textbox name="pattern" value="${pattern}"/>
+            </f:entry>
+            <f:entry title="Expose more variables">
+                <f:repeatable field="extraProperties" items="${extraProperties}">
+                    <table width="100%">
+                        <f:entry title="Variable Name:">
+                            <f:textbox name="key" value="${instance.key}" />
+                        </f:entry>
+                        <f:entry title="Timestamp Pattern:">
+                            <f:textbox name="value" value="${instance.value}" />
+                        </f:entry>
+                        <f:entry title="">
+                            <div align="right">
+                                <f:repeatableDeleteButton />
+                            </div>
+                        </f:entry>
+                    </table>
+                </f:repeatable>
+            </f:entry>
+        </f:optionalBlock>
+    </f:section>
+</j:jelly>
