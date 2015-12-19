@@ -14,7 +14,6 @@ import java.util.Set;
 import java.util.TimeZone;
 
 import static com.orctom.jenkins.plugin.buildtimestamp.BuildTimestampPlugin.DEFAULT_PATTERN;
-import static com.orctom.jenkins.plugin.buildtimestamp.BuildTimestampPlugin.PLUGIN_NAME;
 
 /**
  * wrapper
@@ -36,22 +35,18 @@ public class BuildTimestampWrapper extends BuildWrapper {
 
 		@Override
 		public boolean isApplicable(AbstractProject<?, ?> abstractProject) {
-			return true;
+			return false;
 		}
 
 		/**
 		 * This human readable name is used in the configuration screen.
 		 */
 		public String getDisplayName() {
-			return PLUGIN_NAME;
+			return "";
 		}
 
 		@Override
 		public boolean configure(StaplerRequest req, JSONObject formData) throws Descriptor.FormException {
-			for (Object o : formData.entrySet()) {
-				System.out.println(o);
-			}
-
 			JSONObject data = formData.getJSONObject("enableBuildTimestamp");
 
 			if (isNullJSONObject(data)) {
