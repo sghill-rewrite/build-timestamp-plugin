@@ -2,7 +2,7 @@
     <f:section title="Build Timestamp" >
         <f:optionalBlock field="enableBuildTimestamp" title="Expose BUILD_TIMESTAMP as env variable and System property" checked="${enableBuildTimestamp}">
             <f:entry title="Timezone" field="timezone">
-                <f:textbox field="timezone" value="${timezone}" />
+                <f:combobox field="timezone" value="${timezone}" />
             </f:entry>
             <f:entry title="Pattern" field="pattern">
                 <f:textbox field="pattern" value="${pattern}" />

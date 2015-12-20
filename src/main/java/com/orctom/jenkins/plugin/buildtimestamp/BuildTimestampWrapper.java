@@ -5,7 +5,9 @@ import hudson.model.AbstractProject;
 import hudson.model.Descriptor;
 import hudson.tasks.BuildWrapper;
 import hudson.tasks.BuildWrapperDescriptor;
+import hudson.util.ComboBoxModel;
 import hudson.util.FormValidation;
+import hudson.util.ListBoxModel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
@@ -13,10 +15,7 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TimeZone;
+import java.util.*;
 
 import static com.orctom.jenkins.plugin.buildtimestamp.BuildTimestampPlugin.DEFAULT_PATTERN;
 
@@ -158,6 +157,12 @@ public class BuildTimestampWrapper extends BuildWrapper {
 				return FormValidation.ok();
 			}
 			return FormValidation.error("Invalid pattern");
+		}
+
+		public ComboBoxModel doFillTimezoneItems() {
+			ComboBoxModel items = new ComboBoxModel();
+			Collections.addAll(items, TimeZone.getAvailableIDs());
+			return items;
 		}
 
 		public boolean isEnableBuildTimestamp() {
