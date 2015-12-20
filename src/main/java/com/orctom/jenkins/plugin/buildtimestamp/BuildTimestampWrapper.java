@@ -155,7 +155,7 @@ public class BuildTimestampWrapper extends BuildWrapper {
 
 		public FormValidation doCheckValue(@QueryParameter("value") String value) {
 			if (isPatternValid(value)) {
-				return return FormValidation.ok();
+				return FormValidation.ok();
 			}
 			return FormValidation.error("Invalid pattern");
 		}
