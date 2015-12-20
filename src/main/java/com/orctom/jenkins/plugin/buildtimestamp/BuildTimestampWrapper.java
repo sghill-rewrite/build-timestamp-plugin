@@ -5,10 +5,15 @@ import hudson.model.AbstractProject;
 import hudson.model.Descriptor;
 import hudson.tasks.BuildWrapper;
 import hudson.tasks.BuildWrapperDescriptor;
+import hudson.util.FormValidation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
+import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TimeZone;
@@ -91,7 +96,68 @@ public class BuildTimestampWrapper extends BuildWrapper {
 			JSONObject data = (JSONObject) obj;
 			String key = data.getString("key");
 			String value = data.getString("value");
-			properties.add(new Tuple(key, value));
+			if (isVariableNameValid(key) && isPatternValid(value)) {
+				properties.add(new Tuple(key, value));
+			}
+		}
+
+		private boolean isVariableNameValid(String name) {
+			return null != name && 0 != name.trim().length() && !name.matches(".*\\W.*");
+		}
+
+		private boolean isPatternValid(String pattern) {
+			if (null == pattern || 0 == pattern.trim().length()) {
+				return false;
+			}
+			try {
+				new SimpleDateFormat(pattern);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+
+		public FormValidation doCheckTimezone(@QueryParameter("timezone") String timezoneParam) {
+			return FormValidation.ok("Timezone: %s", getConfiguredTimezone(timezoneParam));
+		}
+
+		private String getConfiguredTimezone(String timezoneParam) {
+			if (null == timezoneParam || 0 == timezoneParam.trim().length()) {
+				return TimeZone.getDefault().getID();
+			}
+
+			return TimeZone.getTimeZone(timezoneParam).getID();
+		}
+
+		public FormValidation doCheckPattern(@QueryParameter("pattern") String patternParam,
+											 @QueryParameter("timezone") String timezoneParam) {
+			String configuredTimezone = getConfiguredTimezone(timezoneParam);
+			String patternStr = DEFAULT_PATTERN;
+			if (null != patternParam && 0 != patternParam.trim().length()) {
+				patternStr = patternParam.trim();
+			}
+
+			try {
+				SimpleDateFormat df = new SimpleDateFormat(patternStr);
+				df.setTimeZone(TimeZone.getTimeZone(configuredTimezone));
+				return FormValidation.ok("Sample timestamp: %s", df.format(new Date()));
+			} catch (Exception e) {
+				return FormValidation.error("Invalid pattern");
+			}
+		}
+
+		public FormValidation doCheckKey(@QueryParameter("key") String key) {
+			if (isVariableNameValid(key)) {
+				return FormValidation.ok();
+			}
+			return FormValidation.error("Invalid variable name");
+		}
+
+		public FormValidation doCheckValue(@QueryParameter("value") String value) {
+			if (isPatternValid(value)) {
+				return return FormValidation.ok();
+			}
+			return FormValidation.error("Invalid pattern");
 		}
 
 		public boolean isEnableBuildTimestamp() {

@@ -2,19 +2,21 @@
     <f:section title="Build Timestamp" >
         <f:optionalBlock field="enableBuildTimestamp" title="Expose BUILD_TIMESTAMP as env variable and System property" checked="${enableBuildTimestamp}">
             <f:entry title="Timezone" field="timezone">
-                <f:textbox name="timezone" value="${timezone}"/>
+                <f:textbox field="timezone" value="${timezone}" />
             </f:entry>
             <f:entry title="Pattern" field="pattern">
-                <f:textbox name="pattern" value="${pattern}"/>
+                <f:textbox field="pattern" value="${pattern}" />
             </f:entry>
-            <f:entry title="Expose more variables">
+            <f:entry title="Export more variables">
                 <f:repeatable field="extraProperties" items="${extraProperties}">
                     <table width="100%">
-                        <f:entry title="Variable Name:">
-                            <f:textbox name="key" value="${instance.key}" />
+                        <f:entry title="Name:" field="key">
+                            <f:textbox field="key" value="${instance.key}"
+                                       checkUrl="'${rootURL}/descriptorByName/com.orctom.jenkins.plugin.buildtimestamp.BuildTimestampWrapper/checkKey?key='+escape(this.value)" />
                         </f:entry>
-                        <f:entry title="Timestamp Pattern:">
-                            <f:textbox name="value" value="${instance.value}" />
+                        <f:entry title="Pattern:" field="value">
+                            <f:textbox field="value" value="${instance.value}"
+                                       checkUrl="'${rootURL}/descriptorByName/com.orctom.jenkins.plugin.buildtimestamp.BuildTimestampWrapper/checkValue?value='+escape(this.value)" />
                         </f:entry>
                         <f:entry title="">
                             <div align="right">
