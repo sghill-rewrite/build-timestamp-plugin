@@ -1,20 +1,20 @@
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
     <f:section title="Build Timestamp" >
         <f:optionalBlock field="enableBuildTimestamp" title="Expose BUILD_TIMESTAMP as env variable and System property" checked="${enableBuildTimestamp}">
-            <f:entry title="Timezone" field="timezone">
+            <f:entry title="Timezone" field="timezone" help="/plugin/build-timestamp/help-timezone.html">
                 <f:combobox field="timezone" value="${timezone}" />
             </f:entry>
-            <f:entry title="Pattern" field="pattern">
+            <f:entry title="Pattern" field="pattern" help="/plugin/build-timestamp/help-pattern.html">
                 <f:textbox field="pattern" value="${pattern}" />
             </f:entry>
             <f:entry title="Export more variables">
                 <f:repeatable field="extraProperties" items="${extraProperties}">
                     <table width="100%">
-                        <f:entry title="Name:" field="key">
+                        <f:entry title="Name:" field="key" help="/plugin/build-timestamp/help-name.html">
                             <f:textbox field="key" value="${instance.key}"
                                        checkUrl="'${rootURL}/descriptorByName/com.orctom.jenkins.plugin.buildtimestamp.BuildTimestampWrapper/checkKey?key='+escape(this.value)" />
                         </f:entry>
-                        <f:entry title="Pattern:" field="value">
+                        <f:entry title="Pattern:" field="value" help="/plugin/build-timestamp/help-pattern.html">
                             <f:textbox field="value" value="${instance.value}"
                                        checkUrl="'${rootURL}/descriptorByName/com.orctom.jenkins.plugin.buildtimestamp.BuildTimestampWrapper/checkValue?value='+escape(this.value)" />
                         </f:entry>
