@@ -1,6 +1,7 @@
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
     <f:section title="Build Timestamp" >
-        <f:optionalBlock field="enableBuildTimestamp" title="Expose BUILD_TIMESTAMP as env variable and System property" checked="${enableBuildTimestamp}">
+        <f:optionalBlock field="enableBuildTimestamp" title="Enable BUILD_TIMESTAMP" checked="${enableBuildTimestamp}"
+                help="/plugin/build-timestamp/help.html">
             <f:entry title="Timezone" field="timezone" help="/plugin/build-timestamp/help-timezone.html">
                 <f:combobox field="timezone" value="${timezone}" />
             </f:entry>
