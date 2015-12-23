@@ -116,10 +116,6 @@ public class BuildTimestampWrapper extends BuildWrapper {
 			}
 		}
 
-		public FormValidation doCheckTimezone(@QueryParameter("timezone") String timezoneParam) {
-			return FormValidation.ok("Timezone: %s", getConfiguredTimezone(timezoneParam));
-		}
-
 		private String getConfiguredTimezone(String timezoneParam) {
 			if (null == timezoneParam || 0 == timezoneParam.trim().length()) {
 				return TimeZone.getDefault().getID();
@@ -139,7 +135,7 @@ public class BuildTimestampWrapper extends BuildWrapper {
 			try {
 				SimpleDateFormat df = new SimpleDateFormat(patternStr);
 				df.setTimeZone(TimeZone.getTimeZone(configuredTimezone));
-				return FormValidation.ok("Sample timestamp: %s", df.format(new Date()));
+				return FormValidation.ok("Using timezone: %s; Sample timestamp: %s", configuredTimezone, df.format(new Date()));
 			} catch (Exception e) {
 				return FormValidation.error("Invalid pattern");
 			}
