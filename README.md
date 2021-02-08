@@ -1,4 +1,6 @@
-# build-timestamp-plugin [![Build Status](https://jenkins.ci.cloudbees.com/buildStatus/icon?job=plugins/build-timestamp-plugin)](https://jenkins.ci.cloudbees.com/job/plugins/job/build-timestamp-plugin/)
+# [LOOK FOR NEW MAINTAINER]
+
+# build-timestamp-plugin
 Adding `BUILD_TIMESTAMP` to jenkins env vars,
 
 See also: https://wiki.jenkins-ci.org/display/JENKINS/Build+Timestamp+Plugin
