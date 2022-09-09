@@ -143,7 +143,7 @@ public class BuildTimestampWrapper extends BuildWrapper {
 				SimpleDateFormat df = new SimpleDateFormat(patternStr);
 				df.setTimeZone(TimeZone.getTimeZone(configuredTimezone));
 				return FormValidation.ok("Using timezone: %s; Sample timestamp: %s", configuredTimezone, df.format(new Date()));
-			} catch (Exception e) {
+			} catch (IllegalArgumentException e) {
 				return FormValidation.error("Invalid pattern");
 			}
 		}

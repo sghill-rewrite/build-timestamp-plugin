@@ -13,15 +13,11 @@
     - If it is not a false positive, fix the bug, then remove the exclusion from this section.
    -->
   <Match>
-    <Or>
-      <And>
-        <Bug pattern="ES_COMPARING_PARAMETER_STRING_WITH_EQ"/>
-        <Class name="com.orctom.jenkins.plugin.buildtimestamp.ShiftExpressionHelper"/>
-      </And>
-      <And>
-        <Bug pattern="DM_BOXED_PRIMITIVE_FOR_PARSING"/>
-        <Class name="com.orctom.jenkins.plugin.buildtimestamp.ShiftExpressionHelper"/>
-      </And>
-    </Or>
+    <Bug pattern="ES_COMPARING_PARAMETER_STRING_WITH_EQ"/>
+    <Class name="com.orctom.jenkins.plugin.buildtimestamp.ShiftExpressionHelper"/>
+  </Match>
+  <Match>
+    <Bug pattern="DM_BOXED_PRIMITIVE_FOR_PARSING"/>
+    <Class name="com.orctom.jenkins.plugin.buildtimestamp.ShiftExpressionHelper"/>
   </Match>
 </FindBugsFilter>
