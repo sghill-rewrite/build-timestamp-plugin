@@ -9,7 +9,7 @@
     <version>1.0.4-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
-    <url>https://wiki.jenkins-ci.org/display/JENKINS/Build+Timestamp+Plugin</url>
+    <url>https://github.com/jenkinsci/build-timestamp-plugin/</url>
     <name>Build Timestamp Plugin</name>
 
     <scm>
