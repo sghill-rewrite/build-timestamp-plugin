@@ -48,6 +48,5 @@ Shell:
 ```
 
 # Open Issues
-[View these issues in
-Jira](https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=project%20=%20JENKINS%20AND%20status%20in%20%28Open,%20%22In%20Progress%22,%20Reopened%29%20AND%20%28component%20=%20build-timestamp-plugin%29&tempMax=100&src=confmacro)
+[View these issues in Jira](https://issues.jenkins.io/issues/?jql=resolution%20is%20EMPTY%20and%20component%3D21120)
 
